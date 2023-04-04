@@ -21,7 +21,7 @@ const cryptos=[
         Logo:"RutaImg"
     },
     {
-        Id:1,
+        Id:4,
         Nombre:"ADA",
         Descripcion:"Cardano",
         PrecioEnUSD:0.355,

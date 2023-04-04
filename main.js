@@ -15,22 +15,34 @@ A FUTURO
 
 //
 
-let dineroCargadoEnCuenta=4000; //moneda en USD
-let valorBTC=2000;
+let dineroCargadoEnCuenta=40000; //moneda en USD
 let transacciones=0;
 alert("Bienvenido a la red mas segura de compra y venta de cryptos");
 
 
-const comprarBtc=()=>
+const listarCriptos=()=>{
+
+    const listado=cryptos.map(crypto =>{
+        return crypto.Nombre + " USD" + crypto.PrecioEnUSD;
+    });
+    comprarCryptos(listado);
+}
+
+const comprarCryptos=(listado)=>
 {
     let ingresoValorCorrecto=false;
     let solicitarMonto=0;
+    
     while(!ingresoValorCorrecto)
-    {
-        solicitarMonto=Number(prompt("Cuanto BTC desea comprar ?"));
-        if(Number.isNaN(solicitarMonto) ||solicitarMonto ===0)
+    {   
+        
+        let cryptoElegida=prompt("Seleccione la crypto que desea Comprar"+'\n\n'+listado.join('\n'));
+        let solicitarMonto=Number(prompt("Ingrese el monto"));
+        let buscarCrypto=cryptos.find(crypto => crypto.Nombre.toLowerCase()===cryptoElegida.toLowerCase());
+
+        if(Number.isNaN(solicitarMonto) ||solicitarMonto ===0||!buscarCrypto)
             alert("Debe ingresar un campo valido, por favor vuelva a ingresar");
-        else if(validarDineroEnCuenta(solicitarMonto))
+        else if(validarDineroEnCuenta(solicitarMonto, buscarCrypto.PrecioEnUSD))
             {
                 ingresoValorCorrecto=true;
                 alert("Su compra de $"+ solicitarMonto+" BTC fue realizada");
@@ -48,12 +60,11 @@ const comprarBtc=()=>
 
 }
  
-const validarDineroEnCuenta=(monto)=>
+const validarDineroEnCuenta=(monto, valorCrypto)=>
 {
-        if((dineroCargadoEnCuenta/valorBTC)>= monto)
+        if((dineroCargadoEnCuenta/valorCrypto)>= monto)
           {
-            console.log(valorBTC/dineroCargadoEnCuenta);
-            dineroCargadoEnCuenta=dineroCargadoEnCuenta-(valorBTC*monto);
+            dineroCargadoEnCuenta=dineroCargadoEnCuenta-(valorCrypto*monto);
             return true;
           }        
 
@@ -93,7 +104,7 @@ const appInicio=()=>{
     let seguirBucle=true;
     do{
 
-        comprarBtc();
+        listarCriptos();
         if(seguirOperando())
             seguirBucle=true;
         else 
