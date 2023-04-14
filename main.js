@@ -17,7 +17,7 @@ A FUTURO
 
 let dineroCargadoEnCuenta=40000; //moneda en USD
 let transacciones=0;
-alert("Bienvenido a la red mas segura de compra y venta de cryptos");
+//alert("Bienvenido a la red mas segura de compra y venta de cryptos");
 
 
 const listarCriptos=()=>{
@@ -119,4 +119,4 @@ const appInicio=()=>{
    
 }
 
-appInicio();
+//appInicio();
