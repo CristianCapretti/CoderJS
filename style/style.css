@@ -12,7 +12,7 @@ form{
     height: 100%;
     width: 35% !important;
     margin-top: 2%;
-
+    max-width:500px
 }
 h1{
     margin-bottom:2%;
@@ -23,7 +23,8 @@ h1{
     border-radius: 8px;
     padding: 14px 16px;
     border: 1px solid rgb(250, 250, 250);
-    margin-bottom: 6%;
+    margin-bottom: 7%;
+    max-height: 200px;
 }
 .buyCoin:hover{
     border:1px solid rgb(252, 213, 53) !important ;
@@ -36,7 +37,9 @@ h1{
     width: 100%;
 
 }
-
+.logo{
+    color:  rgb(252, 213, 53);
+}
 .center{
     text-align: center;
 }
@@ -47,4 +50,31 @@ h1{
 .underline-dotted {
     text-decoration: underline dotted;
     text-decoration-color:rgba(112, 122, 138, 0.635);
+  }
+
+  .tooltip-inner {
+    background-color:rgb(112, 122, 138);
+  }
+  .priceLabel{
+    margin-left: 6%;
+  }
+  
+
+  .selectCoin{
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10%;
+    border: 1px solid white;
+    height: 100%;
+    max-height:100px;
+    overflow: hidden;
+    align-items: center;
+  }
+  .selectCoin:hover{
+    cursor: pointer;
+}
+  .icon{
+    max-width: 25px;
+    height: 24px;
+    margin-bottom: auto;
   }

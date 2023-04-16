@@ -15,6 +15,10 @@ A FUTURO
 
 //
 
+//Cuadro de herramientas
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 let dineroCargadoEnCuenta=40000; //moneda en USD
 let transacciones=0;
 //alert("Bienvenido a la red mas segura de compra y venta de cryptos");
