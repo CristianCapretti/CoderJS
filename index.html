@@ -32,7 +32,7 @@
     </main>
     <form class="container-fluid">
         <div class="row">
-            <h1>Compra</h1>
+            <h1>Comprar</h1>
         </div>
         <div class="row center fontColor">
             <p class="underline-dotted" data-bs-toggle="tooltip" data-bs-title="Recordar que el precio de la criptomoneda fluctua constantemente.">Precio estimado 1 BTC = USD20000</p>
@@ -47,7 +47,7 @@
                 <div class="col-lg-8">
                     <input class="form-control" type="text" placeholder="0.00">  
                 </div>
-                <div class="col-lg-4 center ">
+                <div class="col-lg-4 center "data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <div class="row selectCoin">
                         <div class="col-lg-5 ">
                             <img src="./img/btc.png" alt="bitcoin" class="icon">
@@ -66,16 +66,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <label for="exampleFormControlInput1" class="form-label priceLabel">0.00</label>
                 </div>
-                <div class="col-lg-6 centrarIzq">
-                    <select class="form-select" aria-label="Seleccione Moneda">
-                        <option selected>Seleccione Moneda</option>
-                        <option value="1"><img src="/img/btc.png" alt=""> One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                <div class="col-lg-4 center "data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div class="row selectCoin">
+                        <div class="col-lg-5 ">
+                            <img src="./img/btc.png" alt="bitcoin" class="icon">
+                        </div>
+                        <div class="col-lg-7">
+                            <p class="icon">BTC</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,6 +85,107 @@
             <button type="button" class="btn btn-warning btnComprar"><i class="fa-solid fa-dollar-sign"></i> Comprar</button>
         </div>
     </form>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalLabel">Eliga su Moneda</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group">
+                    <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+                        <div class="container-fluid">
+                             <div class="row">
+                                 <div class="col-lg-2">
+                                     <img src="/img/USD-PNG-Image-File.png" alt="btc" class="img-fluid imgList">
+                                 </div>  
+                                 <div class="col-lg-6">
+                                     <div class="titleCoin">DOLAR</div>
+                                     <div class="descriptionCoin">USD</div>
+                                 </div>
+                                 <div class="col-lg-4">
+                                     <div class="last24">Sin cotizacion</div>
+                                     <p class="porcentColor">0%</p>
+                                 </div>        
+                             </div>     
+                        </div>
+                     </button>
+                    <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+                       <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img src="/img/btc.png" alt="btc" class="img-fluid imgList">
+                                </div>  
+                                <div class="col-lg-6">
+                                    <div class="titleCoin">BITCOIN</div>
+                                    <div class="descriptionCoin">BTC</div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="last24">USD20000</div>
+                                    <p class="porcentColor">1.23%</p>
+                                </div>        
+                            </div>     
+                       </div>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img src="/img/bnb.png" alt="btc" class="img-fluid imgList">
+                                </div>  
+                                <div class="col-lg-6">
+                                    <div class="titleCoin">BNB</div>
+                                    <div class="descriptionCoin">BNB</div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="last24">USD123</div>
+                                    <p class="porcentColorLow">0.23%</p>
+                                </div>        
+                            </div>     
+                       </div>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img src="/img/ada.png" alt="btc" class="img-fluid imgList">
+                                </div>  
+                                <div class="col-lg-6">
+                                    <div class="titleCoin">CARDANO</div>
+                                    <div class="descriptionCoin">ADA</div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="last24">USD50</div>
+                                    <p class="porcentColorLow">0.23%</p>
+                                </div>        
+                            </div>     
+                       </div>
+                    </button>
+                    <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <img src="/img/eth.png" alt="btc" class="img-fluid imgList">
+                                </div>  
+                                <div class="col-lg-6">
+                                    <div class="titleCoin">ETHEREUM</div>
+                                    <div class="descriptionCoin">ETH</div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="last24">USD1823</div>
+                                    <p class="porcentColor">7.23%</p>
+                                </div>        
+                            </div>     
+                       </div>
+                    </button>
+                  </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>
     <script src="cryptos.js"></script>
     <script src="main.js"></script>
 </body>
