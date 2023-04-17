@@ -1,8 +1,12 @@
 main {
-background-color: black;
-height: 100px;
+height: 200px;
 width: 100%;
+margin-top: 2%;
 }
+nav{
+    background-color:white;
+}
+
 section{
     height: 100%;
     width: 40% !important;
@@ -79,9 +83,10 @@ footer i{
     border-radius: 50px;
     border: 1px solid white;
     height: 100%;
-    max-height:100px;
+    max-height:38px;
     overflow: hidden;
-    align-items: center;
+    margin-left: 1%;
+    width: auto;
 
   }
   .selectCoin:hover{
@@ -104,6 +109,22 @@ footer i{
     font-weight: 500;
     line-height: 20px;
     }
+    .cardTitle{
+        display: inline-block;
+        background-color: rgb(252, 213, 53);
+        border-radius: 20px;
+        padding: 2px;
+        padding-left: 8%;
+        padding-right: 8%;
+        margin-bottom: 3%;
+        font-size: 12px !important;
+
+    }
+
+    .infoCoinCard{
+        margin-left: 8%!important;
+    }
+    
   .descriptionCoin{
     box-sizing: border-box;
     margin: 0px;
@@ -141,3 +162,48 @@ footer i{
     font-weight: 500;
     line-height: 20px;
   }
+  .cardCoin{
+    background-color: white;/*rgb(245, 245, 245);*/
+    border-radius: 10px;
+    max-height: 150px;
+    height: 100%;
+    margin-left: 1%;
+    margin-top: 1%;
+    overflow: hidden;
+    box-shadow: 7px 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 1%;
+  }
+  .cardCoin:hover{
+    box-shadow: 7px 10px 15px -3px rgba(0,0,0,0.14);
+  }
+  .imgCard{
+    max-height: 48px;
+    margin-bottom: 8%;
+    display: block;
+  }
+  .graph{
+    max-height: 45px;
+  }
+  .fFgVaS.isUp {
+    filter: hue-rotate(85deg) saturate(80%) brightness(0.85);
+}
+.fFgVaS {
+    width: auto;
+    height: auto;
+    text-align: center;
+    box-sizing: content-box;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    filter: hue-rotate(300deg) saturate(210%) brightness(0.7) contrast(170%);
+}
+.porcentColorCard{
+
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    line-height: 16px;
+    text-align: end;
+    color: rgb(3, 166, 109);
+    padding-top: 29%;
+    padding-right: 10%;
+}
