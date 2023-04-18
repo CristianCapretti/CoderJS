@@ -95,7 +95,7 @@
             <h1>Comprar</h1>
         </div>
         <div class="row center fontColor "id="messagePrice">
-            <p class="underline-dotted" data-bs-toggle="tooltip" data-bs-title="Recordar que el precio de la criptomoneda fluctua constantemente.">Precio estimado 1 BTC = USD20000</p>
+            <p class="underline-dotted" data-bs-toggle="tooltip" data-bs-title="Recordar que el precio de la criptomoneda fluctua constantemente.">Precio estimado 1 BTC = USD30000</p>
         </div>
         <div class="row buyCoin">
             <div class="row">
@@ -105,9 +105,9 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <input id="inputCoin" class="form-control" type="number" placeholder="0.00">  
+                    <input id="inputCoin" class="form-control" type="number" placeholder="0">  
                 </div>
-                <div class="col-lg-4  "data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="col-lg-4  "data-bs-toggle="modal" data-bs-target="#modalCantidad">
                     <div class="row align-items-center selectCoin " id="selectedCoin">
                         <div class="col-sm-5 col-lg-5 ">
                             <img src="./img/btc.png" alt="bitcoin" class="icon">
@@ -127,10 +127,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-8">
-                    <label id="outpConvert" for="exampleFormControlInput1" class="form-label priceLabel">0.00</label>
+                    <label id="outpConvert" for="exampleFormControlInput1" class="form-label priceLabel">0</label>
                 </div>
-                <div class="col-lg-4  "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <div class="row align-items-center selectCoin">
+                <div class="col-lg-4  "data-bs-toggle="modal" data-bs-target="#modalRecive">
+                    <div class="row align-items-center selectCoin" id="selectedCoinRecibe">
                         <div class="col-sm-5 col-lg-5 ">
                             <img src="./img/btc.png" alt="bitcoin" class="icon">
                         </div>
@@ -142,10 +142,12 @@
             </div>
         </div>
         <div >
-            <button type="button" class="btn btn-warning btnComprar"> Comprar</button>
+            
+            <button type="button" class="btn btn-warning btnComprar" id="comprarCrypto"> Comprar</button>
+            <div id="alert" class="alertAdd"></div>
         </div>
     </form>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalCantidad" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -154,6 +156,23 @@
             </div>
             <div class="modal-body">
                 <div class="list-group" id="listCoin">
+                   
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalRecive" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalLabel">Elija su Moneda</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group" id="listCoinRecive">
                    
                 </div>
             </div>

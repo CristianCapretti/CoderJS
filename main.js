@@ -107,23 +107,64 @@ const appInicio=()=>{
 
    
 }
-////////////Desde aca interactuo con el DOM
+////////////Desde aca interactuo con el DOM/////////////////////////////////////////
 //appInicio();
-const inputCoin=document.getElementById("inputCoin");
-const outpConvert=document.getElementById("outpConvert")
-const listModal=document.getElementById("listCoin");
-const convertCoin=inputCoin.addEventListener('input',(e)=>{
+//Variables
+const cantidadDeCompra=document.getElementById("inputCoin");
+const cryptoCantidadRecibe=document.getElementById("outpConvert")
+const listaCryptosContidad= document.getElementById('listCoin');
+const listCryptoRecibe=document.getElementById('listCoinRecive');
+
+//Calcular precio en los inputs
+const convertirMoneda=cantidadDeCompra.addEventListener('input',(e)=>{
     if(e.target.value==='')
-        outpConvert.innerText=0;
+        cryptoCantidadRecibe.innerText=0;
     else
-        outpConvert.innerText=e.target.value;   
-})
-const listCrypto=()=>{
-    listModal.innerHTML="";
-    cryptos.forEach((coin)=> {    
+    {   
+        cryptoCantidadRecibe.innerText=calcularTotal(e.target.value);
+    }
+         
+
+    });
+
+const calcularTotal=(valorCantidad)=>{
+        const cryptoCantidad=document.getElementById('selectedCoin');
+        const moneda=cryptoCantidad.querySelector('p');
+        const cryptoUsadaParaCompra=cryptos.find(crypto=>crypto.Nombre===moneda.textContent);
+        const cryptoRecibe=document.getElementById('selectedCoinRecibe');
+        const monedaRecibe=cryptoRecibe.querySelector('p');
+        const cryptoRecibeValor=cryptos.find(crypto=>crypto.Nombre===monedaRecibe.textContent);
         
+        const totalEnUsdCantidad=cryptoUsadaParaCompra.PrecioEnUSD*valorCantidad;
+        return totalFinal=totalEnUsdCantidad/cryptoRecibeValor.PrecioEnUSD;
+
+    }
+/* 
+    Lista monedas en los Modal, dependiendo "element" es donde ingresa los datos, si es en el modal Cantidad, lista todas las monedas
+    si es en el modal Recibe no lista USD. Ademas tambien pregunta por su Profit para saber si el porcentaje va como verde o Rojo
+*/
+const listarModal =(element, cantidadORecibe) =>{
+    element.innerHTML="";
+    cryptos.forEach((coin)=> {    
+    if(cantidadORecibe==='C')
+    {
+        ingresarElementoAlModal(coin,element);
+    } 
+    else{
+        if(coin.Nombre!='USD')
+        {   
+            ingresarElementoAlModal(coin,element);
+        }
+    }  
+       
+        
+})
+
+}
+//Ingresa los elementos en el Modal
+const ingresarElementoAlModal=(coin, element)=>{
     if(coin.Profit)
-    listModal.innerHTML+=` <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+        element.innerHTML+=` <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-lg-2">
@@ -142,62 +183,99 @@ const listCrypto=()=>{
                                     </button>`;
             
     else
-        listModal.innerHTML+=` <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <img src="${coin.Logo}" alt="btc" class="img-fluid imgList">
-                        </div>  
-                        <div class="col-lg-6">
-                            <div class="titleCoin">${coin.Nombre}</div>
-                            <div class="descriptionCoin">${coin.Descripcion}</div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="last24">${coin.PrecioEnUSD}</div>
-                            <p class="porcentColorLow">${coin.Porcentaje}</p>
-                        </div>        
-                    </div>     
-                </div>
-            </button>`;
-        }
-       
-    );
-
+        element.innerHTML+=` <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal">
+                                <div class="container-fluid">
+                                     <div class="row">
+                                         <div class="col-lg-2">
+                                             <img src="${coin.Logo}" alt="btc" class="img-fluid imgList">
+                                        </div>  
+                                        <div class="col-lg-6">
+                                             <div class="titleCoin">${coin.Nombre}</div>
+                                             <div class="descriptionCoin">${coin.Descripcion}</div>
+                                        </div>
+                                         <div class="col-lg-4">
+                                            <div class="last24">${coin.PrecioEnUSD}</div>
+                                            <p class="porcentColorLow">${coin.Porcentaje}</p>
+                                         </div>        
+                                    </div>     
+                                </div>
+                            </button>`;
 }
-
-
-const listGroup = document.getElementById('listCoin');
-const selectedCoin=listGroup.addEventListener('click', function(event) {
+//Ingresa la crypto deseada con la que opera, tambien ingresa un tipo de cambio en el html
+const seleccionarCrytoCantidad=listaCryptosContidad.addEventListener('click', function(event) {
     const selectedItem = event.target.closest('button');
   
   if (selectedItem) {
     const titleCoinElement = selectedItem.querySelector('.titleCoin');
     const titleCoin = titleCoinElement.innerText;
     const crypto=cryptos.find(crypto=> crypto.Nombre===titleCoin);
-    insertCointSelected(crypto);
-    changeMessage(crypto);
+    const monedaSeleccionada=document.getElementById('selectedCoin');
+    insertarCryptoCantidad(crypto, monedaSeleccionada);
+    cambiarMensajeTipoDeCambio(crypto);
   }
 });
 
-const insertCointSelected=(crypto)=>
+
+//Listar las cryptos que Recibe (en difinitva las que compra),
+const seleccionarCryptoRecibe=listCryptoRecibe.addEventListener('click',(e)=>{
+    const selectedItem = e.target.closest('button');
+  
+    if (selectedItem) {
+      const titleCoinElement = selectedItem.querySelector('.titleCoin');
+      const titleCoin = titleCoinElement.innerText;
+      const crypto=cryptos.find(crypto=> crypto.Nombre===titleCoin);
+      const monedaSeleccionada=document.getElementById('selectedCoinRecibe');
+      insertarCryptoCantidad(crypto, monedaSeleccionada);
+    }
+})
+
+//Dada una crypto y un selector, Ingresa los datos de la crypto en el selector.
+const insertarCryptoCantidad=(crypto,select)=>
 {
-    const selectCoin=document.getElementById('selectedCoin');
-    selectCoin.innerHTML=`<div class="col-sm-5 col-lg-5 ">
+    select.innerHTML=`<div class="col-sm-5 col-lg-5 ">
                             <img src="${crypto.Logo}" alt="${crypto.Nombre}" class="icon">
                          </div>
                          <div class="col-sm-5 col-lg-7">
                             <p class="icon">${crypto.Nombre}</p>
                          </div>`;
+    cryptoCantidadRecibe.innerText=calcularTotal(cantidadDeCompra.value);
+                       
 }
-const changeMessage=(crypto)=>{
+//Recibe un objeto del tipo crypto y cambia el mensaje de tipo de cambio en el index.js
+const cambiarMensajeTipoDeCambio=(crypto)=>{
     const messagePrice=document.getElementById('messagePrice');
     messagePrice.innerHTML=`<p class="underline-dotted" data-bs-toggle="tooltip" data-bs-title="Recordar que el precio de la criptomoneda fluctua constantemente.">Precio estimado 1 ${crypto.Nombre} = USD${crypto.PrecioEnUSD}</p>`; 
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }
 
-listCrypto();
+//notificacion de compra Exitosa
 
+const notificarCompra=(message, type)=>{
+    const alertPlaceholder = document.getElementById('alert')
+    const wrapper = document.createElement('div')
+     wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+
+}
+
+
+const compraExitosa = document.getElementById('comprarCrypto')
+
+  compraExitosa.addEventListener('click', () => {
+    notificarCompra('Transaccion procesada con exito', 'success')
+  })
+
+
+//LLamadas para Listar monedas en los Modals
+listarModal(listaCryptosContidad,'C');//lista en cantidad
+listarModal(listCryptoRecibe,'R');//lista en recibe
 
 
 
