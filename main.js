@@ -1,114 +1,20 @@
+/* Hasta el momento 
+-Compra de Cryptos con USD o cualquier crypto
+-Listado de Transacciones
+
+Futuro
+-Loguin
+-Logout
+-Registro
+-Pago con tarjeta de Debito
+*/
 
 
-//Cuadro de herramientas
+
+//Cuadro de herramientas, js para utilizar los toolTip de Boostrap
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-let dineroCargadoEnCuenta=40000; //moneda en USD
-let transacciones=0;
-//alert("Bienvenido a la red mas segura de compra y venta de cryptos");
-
-
-const listarCriptos=()=>{
-
-    const listado=cryptos.map(crypto =>{
-        return crypto.Nombre + " USD" + crypto.PrecioEnUSD;
-    });
-    comprarCryptos(listado);
-}
-
-const comprarCryptos=(listado)=>
-{
-    let ingresoValorCorrecto=false;
-    let solicitarMonto=0;
-    
-    while(!ingresoValorCorrecto)
-    {   
-        
-        let cryptoElegida=prompt("Seleccione la crypto que desea Comprar"+'\n\n'+listado.join('\n'));
-        let solicitarMonto=Number(prompt("Ingrese el monto"));
-        let buscarCrypto=cryptos.find(crypto => crypto.Nombre.toLowerCase()===cryptoElegida.toLowerCase());
-
-        if(Number.isNaN(solicitarMonto) ||solicitarMonto ===0||!buscarCrypto)
-            alert("Debe ingresar un campo valido, por favor vuelva a ingresar");
-        else if(validarDineroEnCuenta(solicitarMonto, buscarCrypto.PrecioEnUSD))
-            {
-                ingresoValorCorrecto=true;
-                alert("Su compra de $"+ solicitarMonto+" BTC fue realizada");
-                transacciones ++;
-            }
-            else
-            {
-                utilizarTarjeta();
-                ingresoValorCorrecto=true;
-                alert("Su compra de $"+ solicitarMonto+" BTC fue realizada");
-                transacciones ++;
-                return true
-            }
-    }
-
-}
- 
-const validarDineroEnCuenta=(monto, valorCrypto)=>
-{
-        if((dineroCargadoEnCuenta/valorCrypto)>= monto)
-          {
-            dineroCargadoEnCuenta=dineroCargadoEnCuenta-(valorCrypto*monto);
-            return true;
-          }        
-
-        else
-            return false;  
-
-}
-
-const utilizarTarjeta=()=>
-{   
-    let condicion=true;
-    do
-    {
-        let pedirDatosTarjeta=Number(prompt("Ingrese numero de la tarjeta"));
-        if(!Number.isNaN(pedirDatosTarjeta))
-            condicion=false;
-    }while(condicion)
-
-}
-const seguirOperando=()=>
-{
-    let seguirOper=confirm("Desea Seguir Operando?");
-    if(seguirOper)
-        return true;
-    else
-        return false;    
-}
-const mostrarCantidadTransacciones=()=>
-{
-    const confirmar=confirm("Desea ver la cantidad de transacciones realizadas");
-    if(confirmar)
-        alert("La cantidad de transacciones realizadas fueron "+ transacciones);
-
-}
-
-const appInicio=()=>{
-    let seguirBucle=true;
-    do{
-
-        listarCriptos();
-        if(seguirOperando())
-            seguirBucle=true;
-        else 
-        {
-            seguirBucle=false;
-            mostrarCantidadTransacciones();
-            alert("Gracias por confiar en nosotros.");
-        }
-
-    }while(seguirBucle);
-
-   
-}
-////////////Desde aca interactuo con el DOM/////////////////////////////////////////
-//appInicio();
 //Variables
 
 const cantidadDeCompra=document.getElementById("inputCoin");
@@ -118,9 +24,12 @@ const listCryptoRecibe=document.getElementById('listCoinRecive');
 
 //LocalStorage
 //Seteo mi lista de transacciones para persistir e ir agregando
-const misTransacciones=JSON.stringify(transaccionesData);
-localStorage.setItem('Transacciones', misTransacciones);
-
+//Pregunto si ya esta cargada mi lista de transacciones, sino la carga
+//la lista de transacciones la tengo a modo de tener algun dato cargado en pantalla
+if(!localStorage.getItem('Transacciones')){
+    const misTransacciones=JSON.stringify(transaccionesData);
+    localStorage.setItem('Transacciones', misTransacciones);
+}
 //Calcular precio en los inputs
 const convertirMoneda=cantidadDeCompra.addEventListener('input',(e)=>{
     if(e.target.value==='')
