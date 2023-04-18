@@ -3,28 +3,45 @@ const cryptos=[
         Id:1,
         Nombre:"BTC",
         Descripcion:"Bitcoin",
-        PrecioEnUSD:20000,
-        Logo:"RutaImg"        
+        PrecioEnUSD:30000,
+        Profit:true,
+        Porcentaje:"3.23%",
+        Logo:"/img/btc.png"        
     },
     {
         Id:2,
-        Nombre:"ETH",
-        Descripcion:"Ehtereum",
-        PrecioEnUSD:1700,
-        Logo:"RutaImg"
+        Nombre:"USD",
+        Descripcion:"USD",
+        PrecioEnUSD:1,
+        Profit:true,
+        Porcentaje:"0",
+        Logo:"/img/USD.png"
     },
     {
         Id:3,
-        Nombre:"BNB",
-        Descripcion:"BNB",
-        PrecioEnUSD:320,
-        Logo:"RutaImg"
+        Nombre:"ETH",
+        Descripcion:"Ehtereum",
+        PrecioEnUSD:1700,
+        Profit:true,
+        Porcentaje:"1.23%",
+        Logo:"/img/eth.png"
     },
     {
         Id:4,
+        Nombre:"BNB",
+        Descripcion:"BNB",
+        PrecioEnUSD:320,
+        Profit:false,
+        Porcentaje:"0.23%",
+        Logo:"/img/bnb.png"
+    },
+    {
+        Id:5,
         Nombre:"ADA",
         Descripcion:"Cardano",
         PrecioEnUSD:0.355,
-        Logo:"RutaImg"
+        Profit:false,
+        Porcentaje:"13.23%",
+        Logo:"/img/ada.png"
     }
 ]
