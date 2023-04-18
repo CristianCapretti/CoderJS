@@ -11,61 +11,38 @@
     <title>CryptoShop-Transacciones</title>
 </head>
 <body>
-    <head>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"><i class="fa-solid fa-coins logo"></i></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                  <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
-                  <a class="nav-link" href="/pages/transacciones.html">Mis Transacciones</a>
-                </div>
-              </div>
-              <a class="nav-link" href="#">Perfil</a>
-                    <i class="fa-regular fa-user"></i>
-            </div>
-          </nav>
-    </head>
-    <main id="infoCoins" class="container-fluid">
-
-    </main>
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fa-solid fa-coins logo"></i> <div class="logo">Crypto</div><strong >Shop</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
+          <a class="nav-link" href="/pages/transacciones.html">Mis Transacciones</a>
+          <a class="nav-link " href="#"> <i class="fa-regular fa-user"></i></a>
+          
+        </div>
+      </div>
+    </div>
+  </nav>
     <section class="container-fluid">
         <table class="table table-striped">
             <thead>
                 <tr>
-                  <th>Monto</th>
                   <th>Moneda</th>
+                  <th>Monto</th>
+                  <th>Monto en USD</th>
                   <th>Fecha</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td><i class="fa-solid fa-dollar-sign"></i> 123</td>
-                  <td>BTC</td>
-                  <td>01/5/2023</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-dollar-sign"></i> 123</td>
-                    <td>BTC</td>
-                    <td>01/5/2023</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-dollar-sign"></i> 123</td>
-                    <td>BTC</td>
-                    <td>01/5/2023</td>
-                </tr>
-                <tr>
-                    <td><i class="fa-solid fa-dollar-sign"></i> 123</td>
-                    <td>BTC</td>
-                    <td>01/5/2023</td>
-                </tr>
+              <tbody id="idTabla">
+                
               </tbody>    
         </table>
     </section>
-    <script src="cryptos.js"></script>
-    <script src="main.js"></script>
+    <script src="/transaccionesData.js"></script>
+    <script src="/transacciones.js"></script>
 </body>
 </html>

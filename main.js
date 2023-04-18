@@ -110,10 +110,16 @@ const appInicio=()=>{
 ////////////Desde aca interactuo con el DOM/////////////////////////////////////////
 //appInicio();
 //Variables
+
 const cantidadDeCompra=document.getElementById("inputCoin");
 const cryptoCantidadRecibe=document.getElementById("outpConvert")
 const listaCryptosContidad= document.getElementById('listCoin');
 const listCryptoRecibe=document.getElementById('listCoinRecive');
+
+//LocalStorage
+//Seteo mi lista de transacciones para persistir e ir agregando
+const misTransacciones=JSON.stringify(transaccionesData);
+localStorage.setItem('Transacciones', misTransacciones);
 
 //Calcular precio en los inputs
 const convertirMoneda=cantidadDeCompra.addEventListener('input',(e)=>{
@@ -249,7 +255,8 @@ const cambiarMensajeTipoDeCambio=(crypto)=>{
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }
 
-//notificacion de compra Exitosa
+//notificacion de compra Exitosa y realizar compra
+const compraExitosa = document.getElementById('comprarCrypto')
 
 const notificarCompra=(message, type)=>{
     const alertPlaceholder = document.getElementById('alert')
@@ -265,13 +272,31 @@ const notificarCompra=(message, type)=>{
 
 }
 
+compraExitosa.addEventListener('click', () => {
+    const cryptoRecibe=document.getElementById('selectedCoinRecibe');
+    const monedaRecibe=cryptoRecibe.querySelector('p');
+    const cryptoRecibeValor=cryptos.find(crypto=>crypto.Nombre===monedaRecibe.textContent);
+    const totalenUSD=cryptoCantidadRecibe.textContent*cryptoRecibeValor.PrecioEnUSD;
 
-const compraExitosa = document.getElementById('comprarCrypto')
-
-  compraExitosa.addEventListener('click', () => {
+    const nuevaTransaccion={ 
+    Moneda:cryptoRecibeValor.Nombre,
+    Monto:cryptoCantidadRecibe.textContent,
+    MontoenUSD:totalenUSD,
+    Fecha:obtenerFechaDeHoy()}
+    const transacciones=JSON.parse(localStorage.getItem('Transacciones'));
+    transacciones.push(nuevaTransaccion);
+    localStorage.setItem('Transacciones', JSON.stringify(transacciones))    
     notificarCompra('Transaccion procesada con exito', 'success')
   })
 
+  const obtenerFechaDeHoy=()=>{
+    const hoy = new Date();
+    const dia = hoy.getDate();
+    const mes = hoy.getMonth() + 1; // los meses en JavaScript empiezan en 0
+    const anio = hoy.getFullYear();
+    const formato = `${dia}/${mes}/${anio}`;
+    return formato;
+  }
 
 //LLamadas para Listar monedas en los Modals
 listarModal(listaCryptosContidad,'C');//lista en cantidad

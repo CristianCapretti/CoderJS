@@ -1,0 +1,20 @@
+const transaccionesData=[
+    {
+        Moneda:"BTC",
+        Monto:"1",
+        MontoenUSD:30000,
+        Fecha:"20/10/2022"      
+    },
+    {
+        Moneda:"BTC",
+        Monto:"2",
+        MontoenUSD:60000,
+        Fecha:"20/02/2023"  
+    },
+    {
+        Moneda:"ETH",
+        Monto:"1",
+        MontoenUSD:1700,
+        Fecha:"20/04/2023"  
+    }
+]
