@@ -184,40 +184,27 @@ const notificarCompra=(message, type)=>{
 
 }
 
-compraExitosa.addEventListener('click', () => {
-   
-    
-        aceptarCompra.addEventListener('click', ()=>{
-            const cryptoRecibe=document.getElementById('selectedCoinRecibe');
-            const monedaRecibe=cryptoRecibe.querySelector('p');
-            const cryptoRecibeValor=cryptos.find(crypto=>crypto.Nombre===monedaRecibe.textContent);
-            const totalenUSD=cryptoCantidadRecibe.textContent*cryptoRecibeValor.PrecioEnUSD;
 
-            const nuevaTransaccion={ 
-            Moneda:cryptoRecibeValor.Nombre,
-            Monto:cryptoCantidadRecibe.textContent,
-            MontoenUSD:totalenUSD,
-            Fecha:obtenerFechaDeHoy()}
-            const transacciones=JSON.parse(localStorage.getItem('Transacciones'));
-            transacciones.push(nuevaTransaccion);
-            localStorage.setItem('Transacciones', JSON.stringify(transacciones));    
-            notificarCompra('Transaccion procesada con exito', 'success');
+  aceptarCompra.addEventListener('click', ()=>{
+        const cryptoRecibe=document.getElementById('selectedCoinRecibe');
+        const monedaRecibe=cryptoRecibe.querySelector('p');
+        const cryptoRecibeValor=cryptos.find(crypto=>crypto.Nombre===monedaRecibe.textContent);
+        const totalenUSD=cryptoCantidadRecibe.textContent*cryptoRecibeValor.PrecioEnUSD;
 
-        })
-        cancelarCompra.addEventListener('click',()=>{
-            notificarCompra('Su compra fue cancelada','warning');
-        })
-    
-    //else{
-        //notificarCompra('Debe ingresar un valor en cantidad','danger');
-    //}
-        
-    
+        const nuevaTransaccion={ 
+        Moneda:cryptoRecibeValor.Nombre,
+        Monto:cryptoCantidadRecibe.textContent,
+        MontoenUSD:totalenUSD,
+        Fecha:obtenerFechaDeHoy()}
+        const transacciones=JSON.parse(localStorage.getItem('Transacciones'));
+        transacciones.push(nuevaTransaccion);
+        localStorage.setItem('Transacciones', JSON.stringify(transacciones));    
+        notificarCompra('Transaccion procesada con exito', 'success');
 
-    
-    
-  })
-
+})
+cancelarCompra.addEventListener('click',()=>{
+    notificarCompra('Su compra fue cancelada','primary');
+})
 
   const obtenerFechaDeHoy=()=>{
     const hoy = new Date();
