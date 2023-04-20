@@ -1,12 +1,15 @@
 /* Hasta el momento 
 -Compra de Cryptos con USD o cualquier crypto
 -Listado de Transacciones
+-Dialogo de confirmacion
 
-Futuro
--Loguin
+Proximo
+-Monto Disponible USD y Crypto
+-Formulario Loguin
 -Logout
 -Registro
--Pago con tarjeta de Debito
+-Pago con Tarjeta de Debito
+
 */
 
 
@@ -131,7 +134,7 @@ const seleccionarCrytoCantidad=listaCryptosContidad.addEventListener('click', fu
 });
 
 
-//Listar las cryptos que Recibe (en difinitva las que compra),
+////Ingresa la crypto que recibe en el DIV
 const seleccionarCryptoRecibe=listCryptoRecibe.addEventListener('click',(e)=>{
     const selectedItem = e.target.closest('button');
   
@@ -164,7 +167,7 @@ const cambiarMensajeTipoDeCambio=(crypto)=>{
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }
 
-//notificacion de compra Exitosa y realizar compra
+//Funcionalidades de Ejecutar compra, notificacion de compra exitosa y agrega la transaccion al listado de transacciones
 const compraExitosa = document.getElementById('comprarCrypto')
 
 const notificarCompra=(message, type)=>{
@@ -182,21 +185,39 @@ const notificarCompra=(message, type)=>{
 }
 
 compraExitosa.addEventListener('click', () => {
-    const cryptoRecibe=document.getElementById('selectedCoinRecibe');
-    const monedaRecibe=cryptoRecibe.querySelector('p');
-    const cryptoRecibeValor=cryptos.find(crypto=>crypto.Nombre===monedaRecibe.textContent);
-    const totalenUSD=cryptoCantidadRecibe.textContent*cryptoRecibeValor.PrecioEnUSD;
+   
+    
+        aceptarCompra.addEventListener('click', ()=>{
+            const cryptoRecibe=document.getElementById('selectedCoinRecibe');
+            const monedaRecibe=cryptoRecibe.querySelector('p');
+            const cryptoRecibeValor=cryptos.find(crypto=>crypto.Nombre===monedaRecibe.textContent);
+            const totalenUSD=cryptoCantidadRecibe.textContent*cryptoRecibeValor.PrecioEnUSD;
 
-    const nuevaTransaccion={ 
-    Moneda:cryptoRecibeValor.Nombre,
-    Monto:cryptoCantidadRecibe.textContent,
-    MontoenUSD:totalenUSD,
-    Fecha:obtenerFechaDeHoy()}
-    const transacciones=JSON.parse(localStorage.getItem('Transacciones'));
-    transacciones.push(nuevaTransaccion);
-    localStorage.setItem('Transacciones', JSON.stringify(transacciones))    
-    notificarCompra('Transaccion procesada con exito', 'success')
+            const nuevaTransaccion={ 
+            Moneda:cryptoRecibeValor.Nombre,
+            Monto:cryptoCantidadRecibe.textContent,
+            MontoenUSD:totalenUSD,
+            Fecha:obtenerFechaDeHoy()}
+            const transacciones=JSON.parse(localStorage.getItem('Transacciones'));
+            transacciones.push(nuevaTransaccion);
+            localStorage.setItem('Transacciones', JSON.stringify(transacciones));    
+            notificarCompra('Transaccion procesada con exito', 'success');
+
+        })
+        cancelarCompra.addEventListener('click',()=>{
+            notificarCompra('Su compra fue cancelada','warning');
+        })
+    
+    //else{
+        //notificarCompra('Debe ingresar un valor en cantidad','danger');
+    //}
+        
+    
+
+    
+    
   })
+
 
   const obtenerFechaDeHoy=()=>{
     const hoy = new Date();
