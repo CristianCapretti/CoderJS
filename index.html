@@ -143,7 +143,9 @@
         </div>
         <div >
             
-            <button type="button" class="btn btn-warning btnComprar" id="comprarCrypto" data-bs-toggle="modal" data-bs-target="#modalConfirmarCompra">  Comprar</button>
+            <!-- <button type="button" class="btn btn-warning btnComprar" id="comprarCrypto" data-bs-toggle="modal" data-bs-target="#modalConfirmarCompra">  Comprar</button> -->
+            <button type="button" class="btn btn-warning btnComprar" id="comprarCrypto">Comprar</button>
+
             <div id="alert" class="alertAdd"></div>
         </div>
     </form>
@@ -182,7 +184,7 @@
         </div>
     </div>
 
-    <div id="ModalConfirmacionCompra">
+    <!-- <div id="ModalConfirmacionCompra">
         <div class="modal fade" id="modalConfirmarCompra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
@@ -200,7 +202,26 @@
               </div>
             </div>
           </div>
-    </div>
+    </div> -->
+    <div id="ModalConfirmacionCompra">
+        <div class="modal fade" id="modalConfirmarCompra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirme transaccion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ¿Desea confirmar la transaccion?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancelarCompra">Cancelar</button>
+                <button type="button" class="btn btn-success" id="aceptarCompra" data-bs-dismiss="modal">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="cryptos.js"></script>
     <script src="transaccionesData.js"></script>
     <script src="main.js"></script>

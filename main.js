@@ -170,6 +170,16 @@ const cambiarMensajeTipoDeCambio=(crypto)=>{
 //Funcionalidades de Ejecutar compra, notificacion de compra exitosa y agrega la transaccion al listado de transacciones
 const compraExitosa = document.getElementById('comprarCrypto')
 
+compraExitosa.addEventListener('click',()=>{
+    const modalElement = document.getElementById('modalConfirmarCompra');
+    const modal = new bootstrap.Modal(modalElement);
+    if(cantidadDeCompra.value>0 ||!cantidadDeCompra.value==='' ){
+        modal.show();
+    }
+    else
+        notificarCompra('Debe ingresar una cantidad valida','danger');
+    
+})
 const notificarCompra=(message, type)=>{
     const alertPlaceholder = document.getElementById('alert')
     const wrapper = document.createElement('div')
