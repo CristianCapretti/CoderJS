@@ -2,9 +2,18 @@
 -Compra de Cryptos con USD o cualquier crypto
 -Listado de Transacciones
 -Dialogo de confirmacion
+-Segmentar Codigo
+
+Para el proyecto exigen
+-Agregar un operador ternario
+-Agregar una descontruccion de objeto
+-generar dinamicamente las cards BTC
+
 
 Proximo
+-Solo pago de divisas en cantidad(tiene mas sentido)
 -Monto Disponible USD y Crypto
+
 -Formulario Loguin
 -Logout
 -Registro
