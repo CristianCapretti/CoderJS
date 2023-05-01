@@ -2,18 +2,11 @@
 -Compra de Cryptos con USD o cualquier crypto
 -Listado de Transacciones
 -Dialogo de confirmacion
--Segmentar Codigo
-
-Para el proyecto exigen
--Agregar un operador ternario
--Agregar una descontruccion de objeto
--generar dinamicamente las cards BTC
 
 
 Proximo
 -Solo pago de divisas en cantidad(tiene mas sentido)
 -Monto Disponible USD y Crypto
-
 -Formulario Loguin
 -Logout
 -Registro
@@ -34,25 +27,41 @@ const cryptoCantidadRecibe=document.getElementById("outpConvert")
 const listaCryptosContidad= document.getElementById('listCoin');
 const listCryptoRecibe=document.getElementById('listCoinRecive');
 
+//producto.stock!=0? alert(’Hay stock’):alert(‘no hay stock’)
 //LocalStorage
 //Seteo mi lista de transacciones para persistir e ir agregando
 //Pregunto si ya esta cargada mi lista de transacciones, sino la carga
 //la lista de transacciones la tengo a modo de tener algun dato cargado en pantalla
-if(!localStorage.getItem('Transacciones')){
-    const misTransacciones=JSON.stringify(transaccionesData);
-    localStorage.setItem('Transacciones', misTransacciones);
+
+const urlTransacciones='transaccionesData.json';
+const urlCryptos='cryptos.json'
+const cryptos=[];
+
+const getCryptos= async()=>{
+    const response= await fetch(urlCryptos)
+    const data = await response.json()
+    data.forEach((dato)=>{
+        cryptos.push(dato);
+    })
+    listarModal(listaCryptosContidad,'C');//lista en cantidad
+    listarModal(listCryptoRecibe,'R');//lista en recibe
 }
+
+if(!localStorage.getItem('Transacciones')){
+        fetch(urlTransacciones)
+        .then((response)=>response.json())
+        .then((data)=>{
+            const misTransacciones=JSON.stringify(data);
+            localStorage.setItem('Transacciones', misTransacciones);
+        })
+}
+
+
 //Calcular precio en los inputs
 const convertirMoneda=cantidadDeCompra.addEventListener('input',(e)=>{
-    if(e.target.value==='')
-        cryptoCantidadRecibe.innerText=0;
-    else
-    {   
-        cryptoCantidadRecibe.innerText=calcularTotal(e.target.value);
-    }
-         
-
-    });
+    
+    e.target.value===''? cryptoCantidadRecibe.innerText=0:cryptoCantidadRecibe.innerText=calcularTotal(e.target.value);
+});
 
 const calcularTotal=(valorCantidad)=>{
         const cryptoCantidad=document.getElementById('selectedCoin');
@@ -235,8 +244,8 @@ cancelarCompra.addEventListener('click',()=>{
   }
 
 //LLamadas para Listar monedas en los Modals
-listarModal(listaCryptosContidad,'C');//lista en cantidad
-listarModal(listCryptoRecibe,'R');//lista en recibe
+getCryptos()
+
 
 
 
